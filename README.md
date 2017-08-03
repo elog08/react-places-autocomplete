@@ -384,6 +384,7 @@ If set to `true`, first suggestion in the dropdown will be automatically highlig
 ## Utility Functions
 * [`geocodeByAddress`](#geocode-by-address)
 * [`geocodeByPlaceId`](#geocode-by-place-id)
+* [`geocodeByLatLng`](#geocode-by-lat-lng)
 * [`getLatLng`](#get-lat-lng)
 
 <a name="geocode-by-address"></a>
@@ -430,6 +431,28 @@ Type: `String`,
 Required: `true`
 
 String that gets passed to Google Maps [Geocoder](https://developers.google.com/maps/documentation/javascript/geocoding)
+
+<a name="geocode-by-lat-lng"></a>
+### `geocodeByLatLng` API
+
+```js
+
+/**
+ * Returns a promise
+ * @param {Number} lat
+ * @param {Number} lng
+ * @return {Promise}
+*/
+geocodeByLatLng(lat, lng)
+```
+
+#### lat
+Type: `Number`,
+Required: `true`
+
+#### lng
+Type: `Number`,
+Required: `true`
 
 
 ```js

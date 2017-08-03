@@ -77,3 +77,37 @@ export const geocodeByPlaceId = (placeId, callback) => {
     })
   })
 }
+
+export const geocodeByLatLng = (lat, lng, callback) => {
+  const geocoder = new google.maps.Geocoder()
+  const OK = google.maps.GeocoderStatus.OK
+  const location = { lat, lng };
+
+  return new Promise((resolve, reject) => {
+    geocoder.geocode({ location }, (results, status) => {
+      if (status !== OK) {
+
+        // TODO: Remove callback support in the next major version.
+        if (callback) {
+          console.warn('Deprecated: Passing a callback to geocodeByLatLng is deprecated. Please see "https://github.com/kenny-hibino/react-places-autocomplete#geocodebyplaceid-api"')
+          callback({ status }, null, results)
+          return
+        }
+
+        reject(status)
+      }
+
+      // TODO: Remove callback support in the next major version.
+      if (callback) {
+        const latLng = {
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        }
+        console.warn('Deprecated: Passing a callback to geocodeByLatLng is deprecated. Please see "https://github.com/kenny-hibino/react-places-autocomplete#geocodebylatlng-api"')
+        callback(null, latLng, results)
+      }
+
+      resolve(results)
+    })
+  })
+}
